@@ -29,6 +29,16 @@
 				<!-- v-for  =>  looping -->
 				<li v-for="hobbie in hobbies" v-text="hobbie"></li>
 			</ol>
+			<h4>Completed tasks</h4>
+			<ul>
+				<!-- v-if => conditioning -->
+				<li v-for="task in myTasks" v-if="task.completed" v-text="task.description"></li>
+			</ul>
+			<h4>Incompleted tasks</h4>
+			<ul>
+				<!-- useing computed property in v-text -->
+				<li v-for="task in incompletedTasks" v-text="task.description"></li>
+			</ul>
 		</div>
 
 		<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
@@ -41,7 +51,13 @@
 					newHobby: '',
 					hobbies: ['drum', 'padel', 'run', 'program'],
 					className: 'green-text',
-					isActive: false
+					isActive: false,
+					myTasks: [
+						{ description: 'go', completed: true },
+						{ description: 'collect', completed: false },
+						{ description: 'buy', completed: false },
+						{ description: 'return', completed: true }
+					]
 				},
 				methods: {
 					addHobby: function() {
@@ -53,6 +69,11 @@
 							this.isActive = false;
 							alert('Any hobby entered');
 						}
+					}
+				},
+				computed: {
+					incompletedTasks() {
+						return this.myTasks.filter(task => !task.completed)
 					}
 				}
 			})
