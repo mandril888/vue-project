@@ -2,6 +2,15 @@
 
 	<head>
 
+		<style type="text/css">
+			.green-text {
+				color: green;
+			}
+			.active-btn {
+				background-color: green;
+			}
+		</style>
+
 	</head>
 
 	<body>
@@ -9,11 +18,15 @@
 		<div id="root">
 			<p>Hi <b>{{ name }}</b>,</p>
 			<label for="newHobby">Insert a Hobby: </label>
+			<!-- v-on: == @  =>  event listener -->
 			<input type="text" class="input" v-model="newHobby" @keyup.enter="addHobby">
-			<button @click="addHobby">Add hobby</button>
-			<p>The value of the new hobby is: <b style="text-transform:uppercase">{{ newHobby }}</b></p>
+			<!-- v-bind: == :  =>  binding -->
+			<button :class="{'active-btn': isActive}" @click="addHobby">Add hobby</button>
+			<p>The value of the new hobby is: <b :class="className" style="text-transform:uppercase">{{ newHobby }}</b></p>
 			<h4>My hobbies:</h4>
 			<ol>
+				<!-- v-text == {{ xxx }}  =>  display text -->
+				<!-- v-for  =>  looping -->
 				<li v-for="hobbie in hobbies" v-text="hobbie"></li>
 			</ol>
 		</div>
@@ -26,12 +39,20 @@
 				data: {
 					name: 'Arturo',
 					newHobby: '',
-					hobbies: ['drum', 'padel', 'run', 'program']
+					hobbies: ['drum', 'padel', 'run', 'program'],
+					className: 'green-text',
+					isActive: false
 				},
 				methods: {
 					addHobby: function() {
-						this.hobbies.push(this.newHobby);
-						this.newHobby = '';
+						if(this.newHobby) {
+							this.hobbies.push(this.newHobby);
+							this.newHobby = '';
+							this.isActive = true;
+						} else {
+							this.isActive = false;
+							alert('Any hobby entered');
+						}
 					}
 				}
 			})
