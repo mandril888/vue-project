@@ -7,21 +7,32 @@
 	<body>
 
 		<div id="root">
-			<input type="text" id="input" v-model="message">
-			<p>The value of the input is: {{message}}</p>
+			<p>Hi <b>{{ name }}</b>,</p>
+			<label for="newHobby">Insert a Hobby: </label>
+			<input type="text" class="input" v-model="newHobby" @keyup.enter="addHobby">
+			<button @click="addHobby">Add hobby</button>
+			<p>The value of the new hobby is: <b style="text-transform:uppercase">{{ newHobby }}</b></p>
+			<h4>My hobbies:</h4>
+			<ol>
+				<li v-for="hobbie in hobbies" v-text="hobbie"></li>
+			</ol>
 		</div>
-
 
 		<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
 
 		<script>
-
-			//document.querySelector('#input').value = data.message;
-
-			new Vue ({
+			var app = new Vue ({
 				el: '#root',
 				data: {
-					message: 'Hello World'
+					name: 'Arturo',
+					newHobby: '',
+					hobbies: ['drum', 'padel', 'run', 'program']
+				},
+				methods: {
+					addHobby: function() {
+						this.hobbies.push(this.newHobby);
+						this.newHobby = '';
+					}
 				}
 			})
 		</script>
