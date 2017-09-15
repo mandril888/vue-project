@@ -6,7 +6,25 @@
 
 	<body>
 
+		<div id="root">
+			<input type="text" id="input" v-model="message">
+			<p>The value of the input is: {{message}}</p>
+		</div>
+
+
 		<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+
+		<script>
+
+			//document.querySelector('#input').value = data.message;
+
+			new Vue ({
+				el: '#root',
+				data: {
+					message: 'Hello World'
+				}
+			})
+		</script>
 
 	</body>
 
