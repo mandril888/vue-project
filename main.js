@@ -1,7 +1,11 @@
 // component that uses other component (game)
 Vue.component('games-list', {
 	// this v-for must have a englobator, like <ul>, or <div>, etc
-	template: '<ul><game v-for="game in games" v-text="game.name"></game></ul>',
+	template: `
+		<ul>
+			<game v-for="game in games" v-text="game.name"></game>
+		</ul>
+	`,
 	data() {
 		return {
 			games: [
