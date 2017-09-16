@@ -32,12 +32,16 @@
 			<h4>Completed tasks</h4>
 			<ul>
 				<!-- v-if => conditioning -->
-				<li v-for="task in myTasks" v-if="task.completed" v-text="task.description"></li>
+				<li v-for="task in myTasks" v-if="task.completed">
+					{{ task.description }} <button @click="incompleteTask(task.description)">Not completed</button>
+				</li>
 			</ul>
 			<h4>Incompleted tasks</h4>
 			<ul>
 				<!-- useing computed property in v-text -->
-				<li v-for="task in incompletedTasks" v-text="task.description"></li>
+				<li v-for="task in incompletedTasks">
+					{{ task.description }} <button @click="completeTask(task.description)">Completed</button>
+				</li>
 			</ul>
 		</div>
 
@@ -69,11 +73,25 @@
 							this.isActive = false;
 							alert('Any hobby entered');
 						}
+					},
+					completeTask: function(name) {
+						app.myTasks.forEach(function(el){
+							if(el.description == name) {
+								el.completed = true;
+							}
+						})
+					},
+					incompleteTask: function(name) {
+						app.myTasks.forEach(function(el){
+							if(el.description == name) {
+								el.completed = false;
+							}
+						})
 					}
 				},
 				computed: {
 					incompletedTasks() {
-						return this.myTasks.filter(task => !task.completed)
+						return this.myTasks.filter(task => !task.completed);
 					}
 				}
 			})
