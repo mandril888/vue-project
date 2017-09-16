@@ -1,3 +1,26 @@
+// component that uses other component (game)
+Vue.component('games-list', {
+	// this v-for must have a englobator, like <ul>, or <div>, etc
+	template: '<ul><game v-for="game in games" v-text="game.name"></game></ul>',
+	data() {
+		return {
+			games: [
+				{ name: 'PES8', isGood: true },
+				{ name: 'Call of Duty', isGood: false },
+				{ name: 'Counter', isGood: false },
+				{ name: 'Risk', isGood: true },
+				{ name: 'Guitar Hero', isGood: true }
+			]
+		}
+	}
+})
+
+// single component
+// slot is used to print every <li> text
+Vue.component('game', {
+	template: '<li><slot></slot></li>'
+})
+
 var app = new Vue ({
 	el: '#root',
 	data: {
