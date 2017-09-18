@@ -2,6 +2,7 @@
 
 	<head>
 
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="main.css" />
 
 	</head>
@@ -9,35 +10,59 @@
 	<body>
 
 		<div id="root">
-			<p>Hi <b>{{ name }}</b>,</p>
-			<label for="newHobby">Insert a Hobby: </label>
-			<!-- v-on: == @  =>  event listener -->
-			<input type="text" class="input" v-model="newHobby" @keyup.enter="addHobby">
-			<!-- v-bind: == :  =>  binding -->
-			<button :class="{'active-btn': isActive}" @click="addHobby">Add hobby</button>
-			<p>The value of the new hobby is: <b :class="className" style="text-transform:uppercase">{{ newHobby }}</b></p>
-			<h4>My hobbies:</h4>
-			<ol>
-				<!-- v-text == {{ xxx }}  =>  display text -->
-				<!-- v-for  =>  looping -->
-				<li v-for="hobbie in hobbies" v-text="hobbie"></li>
-			</ol>
-			<h4>Completed tasks</h4>
-			<ul>
-				<!-- v-if => conditioning -->
-				<li v-for="task in myTasks" v-if="task.completed">
-					{{ task.description }} <button @click="incompleteTask(task.description)">Not completed</button>
-				</li>
-			</ul>
-			<h4>Incompleted tasks</h4>
-			<ul>
-				<!-- useing computed property in v-text -->
-				<li v-for="task in incompletedTasks">
-					{{ task.description }} <button @click="completeTask(task.description)">Completed</button>
-				</li>
-			</ul>
-			<h4>List with Vue components</h4>
-			<games-list></games-list>
+			<!-- ........................................................ -->
+			<div class="container">
+				<p>Hi <b>{{ name }}</b>,</p>
+				<label for="newHobby">Insert a Hobby: </label>
+				<!-- v-on: == @  =>  event listener -->
+				<input type="text" class="input" v-model="newHobby" @keyup.enter="addHobby">
+				<!-- v-bind: == :  =>  binding -->
+				<button :class="{'active-btn': isActive}" class="btn btn-primary" @click="addHobby">Add hobby</button>
+				<p>The value of the new hobby is: <b :class="className" style="text-transform:uppercase">{{ newHobby }}</b></p>
+				<h4>My hobbies:</h4>
+				<ol>
+					<!-- v-text == {{ xxx }}  =>  display text -->
+					<!-- v-for  =>  looping -->
+					<li v-for="hobbie in hobbies" v-text="hobbie"></li>
+				</ol>
+			</div>
+
+			<!-- ........................................................ -->
+			<div class="container">
+				<h4>Completed tasks</h4>
+				<ul>
+					<!-- v-if => conditioning -->
+					<li v-for="task in myTasks" v-if="task.completed">
+						{{ task.description }} 
+						<button class="btn btn-warning" @click="incompleteTask(task.description)">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
+					</li>
+				</ul>
+				<h4>Incompleted tasks</h4>
+				<ul>
+					<!-- useing computed property in v-text -->
+					<li v-for="task in incompletedTasks">
+						{{ task.description }} 
+						<button class="btn btn-success" @click="completeTask(task.description)">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						</button>
+					</li>
+				</ul>
+			</div>
+
+			<!-- ........................................................ -->
+			<div class="container">
+				<h4>List with Vue components</h4>
+				<games-list></games-list>
+			</div>
+
+			<!-- ........................................................ -->
+			<div class="container">
+				<message title="Hello one" body="I'm here in the first position"></message>
+				<message title="Hello two" body="I'm in the second position"></message>
+			</div>
+
 		</div>
 
 		<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
