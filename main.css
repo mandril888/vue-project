@@ -9,3 +9,16 @@
 .active-btn {
 	background-color: green;
 }
+.modal {
+	background: rgba(0,0,0,0.5);
+	display: block;
+}
+.modal .my-modal {
+	text-align: center;
+	margin-top: 50px;
+	border: 1px solid grey;
+	padding: 50px;
+	background: white;
+	border-radius: 4px;
+	box-shadow: 0 0 11px 0px black;
+}

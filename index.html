@@ -63,6 +63,12 @@
 				<message title="Hello two" body="I'm in the second position"></message>
 			</div>
 
+			<!-- ........................................................ -->
+			<div class="container">
+				<modal v-if="showModal" @close="showModal = false"></modal>
+				<button @click="showModal = true">Show modal</button>
+			</div>
+
 		</div>
 
 		<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>

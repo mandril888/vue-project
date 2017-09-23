@@ -45,6 +45,19 @@ Vue.component('message', {
 	`
 })
 
+Vue.component('modal', {
+	template: `
+		<div class="modal">
+			<div class="container">
+				<div class="my-modal">
+					<span class="close" @click="$emit('close')">X</span>
+					<p>I'm a modal!! =)</p>
+				</div>
+			</div>
+		</div>
+	`,
+})
+
 var app = new Vue ({
 	el: '#root',
 	data: {
@@ -58,7 +71,8 @@ var app = new Vue ({
 			{ description: 'collect', completed: false },
 			{ description: 'buy', completed: false },
 			{ description: 'return', completed: true }
-		]
+		],
+		showModal: false
 	},
 	methods: {
 		addHobby: function() {
