@@ -35,11 +35,11 @@ Vue.component('message', {
 	template: `
 		<article class="jumbotron" v-show="isVisible">
 			<div class="message-header">
-				{{ title }}
+				<h2>{{ title }}</h2>
 				<span class="close" @click="isVisible = false">X</span>
 			</div>
 			<div class="message-body">
-				{{ body }}
+				<p>{{ body }}</p>
 			</div>
 		</article>
 	`
@@ -55,7 +55,58 @@ Vue.component('modal', {
 				</div>
 			</div>
 		</div>
+	`
+})
+
+Vue.component('tabs', {
+	template: `
+		<div>
+			<ul class="nav nav-tabs">
+				<li role="presentation" v-for="tab in tabs" :class="{ 'active' : tab.isActive }" >
+					<a :href="tab.href" @click="selectTab(tab)">{{ tab.name }}</a>
+				</li>
+			</ul>
+			<div>
+				<slot></slot>
+			</div>
+		</div>
 	`,
+	data() {
+		return { tabs: [] }
+	},
+	created() {
+		this.tabs = this.$children;
+	},
+	methods: {
+		selectTab(selectedTab) {
+			this.tabs.forEach(tab => {
+				tab.isActive = (tab.name == selectedTab.name)
+			})
+		}
+	}
+})
+
+Vue.component('tab', {
+	props: {
+		name: { required: true },
+		selected: { default: false }
+	},
+	template: `
+		<div v-show="isActive"><slot></slot></div>
+	`,
+	data() {
+		return {
+			isActive: false
+		}
+	},
+	computed: {
+		href() {
+			return '#' + this.name.toLowerCase().replace(/ /g, '-')
+		}
+	},
+	mounted() {
+		this.isActive = this.selected
+	}
 })
 
 var app = new Vue ({
