@@ -109,6 +109,15 @@ Vue.component('tab', {
 	}
 })
 
+Vue.component('cupon', {
+	template: '<input placeholder="Enter your cupon code" @blur="inputFilled"></input>',
+	methods: {
+		inputFilled() {
+			this.$emit('applied')
+		}
+	}
+})
+
 var app = new Vue ({
 	el: '#root',
 	data: {
@@ -123,7 +132,8 @@ var app = new Vue ({
 			{ description: 'buy', completed: false },
 			{ description: 'return', completed: true }
 		],
-		showModal: false
+		showModal: false,
+		cuponApplied: false
 	},
 	methods: {
 		addHobby: function() {
@@ -149,6 +159,9 @@ var app = new Vue ({
 					el.completed = false;
 				}
 			})
+		},
+		onCuponApplied() {
+			this.cuponApplied = true;
 		}
 	},
 	computed: {

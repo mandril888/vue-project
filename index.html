@@ -84,6 +84,13 @@
 				</tabs>
 			</div>
 
+			<!-- ........................................................ -->
+			<!-- comunicatoin between parent and child -->
+			<div class="container">
+				<cupon @applied="onCuponApplied"></cupon>
+				<h2 v-if="cuponApplied" class="alert alert-success text-center">Congratulations, you used your cupon!!</h2>
+			</div>
+
 		</div>
 
 		<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
