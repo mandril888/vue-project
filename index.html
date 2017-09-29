@@ -91,6 +91,13 @@
 				<h2 v-if="cuponApplied" class="alert alert-success text-center">Congratulations, you used your cupon!!</h2>
 			</div>
 
+			<!-- ........................................................ -->
+			<!-- comunicatoin between parent and child V2 -->
+			<div class="container">
+				<info></info>
+				<h2 v-if="infoSended" class="alert alert-info text-center">You entered <b>{{ info }}</b></h2>
+			</div>
+
 		</div>
 
 		<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>

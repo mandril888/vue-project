@@ -118,6 +118,21 @@ Vue.component('cupon', {
 	}
 })
 
+window.Event = new Vue();
+Vue.component('info', {
+	template: '<input placeholder="Send info" @blur="filledInput" v-model="info"></input>',
+	data() {
+		return {
+			info: ''
+		}
+	},
+	methods: {
+		filledInput() {
+			Event.$emit('filled', this.info)
+		}
+	}
+})
+
 var app = new Vue ({
 	el: '#root',
 	data: {
@@ -133,7 +148,9 @@ var app = new Vue ({
 			{ description: 'return', completed: true }
 		],
 		showModal: false,
-		cuponApplied: false
+		cuponApplied: false,
+		infoSended: false,
+		info: ''
 	},
 	methods: {
 		addHobby: function() {
@@ -168,5 +185,9 @@ var app = new Vue ({
 		incompletedTasks() {
 			return this.myTasks.filter(task => !task.completed);
 		}
+	},
+	created() {
+		Event.$on('filled', () => this.infoSended = true)
+		Event.$on('filled', (data) => this.info = data.charAt(0).toUpperCase() + data.slice(1).toLowerCase())
 	}
 })
