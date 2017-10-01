@@ -107,6 +107,18 @@
 				<h2 v-if="infoSended" class="alert alert-info text-center">You entered <b>{{ info }}</b></h2>
 			</div>
 
+			<!-- ........................................................ -->
+			<!-- inline template -->
+			<div class="container">
+				<progress-view inline-template>
+					<div>
+						<h3>The total percentage is {{ totalPercentage }}%</h3>
+						<button @click="totalPercentage += 10" class="btn btn-success">Add percentage</button>
+						<button @click="totalPercentage += -10" class="btn btn-warning">Substract percentage</button>
+					</div>
+				</progress-view>
+			</div>
+
 		</div>
 
 		<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>

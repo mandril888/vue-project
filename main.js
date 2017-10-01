@@ -145,6 +145,14 @@ Vue.component('info', {
 	}
 })
 
+Vue.component('progress-view', {
+	data() {
+		return {
+			totalPercentage: 50
+		}
+	}
+})
+
 var app = new Vue ({
 	el: '#root',
 	data: {
