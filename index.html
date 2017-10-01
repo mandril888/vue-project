@@ -64,8 +64,17 @@
 			</div>
 
 			<!-- ........................................................ -->
+			<!-- show hand hide modal with $emit, parent and child -->
+			<!-- create different slots and default slots in a component -->
 			<div class="container">
-				<modal v-if="showModal" @close="showModal = false"></modal>
+				<modal v-if="showModal" @close="showModal = false">
+					<template slot="header">Specific header</template>
+					Specific content in the modal
+					<div slot="footer">
+						<button type="button" class="btn btn-primary">Save changes</button>
+						<button type="button" class="btn btn-secondary" @click="showModal = false">Close</button>
+					</div>
+				</modal>
 				<button @click="showModal = true">Show modal</button>
 			</div>
 

@@ -50,8 +50,20 @@ Vue.component('modal', {
 		<div class="modal">
 			<div class="container">
 				<div class="my-modal">
-					<span class="close" @click="$emit('close')">X</span>
-					<p>I'm a modal!! =)</p>
+					<div class="modal-header">
+						<h5 class="modal-title">
+							<slot name="header">Default header</slot>
+						</h5>
+						<span class="close" @click="$emit('close')">X</span>
+					</div>
+					<div class="modal-body">
+						<slot>I'm the body default. =)</slot>
+					</div>
+					<div class="modal-footer">
+						<slot name="footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal" @click="$emit('close')">Ok</button>
+						</slot>
+					</div>
 				</div>
 			</div>
 		</div>
